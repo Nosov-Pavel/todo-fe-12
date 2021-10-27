@@ -6,7 +6,7 @@ const unitialState = [
     {
         "id": 16,
         "title": "delectus aut autem",
-        "completed": false
+        "completed": true
     },
     {
         "id": 23,
@@ -23,20 +23,31 @@ const unitialState = [
 function App() {
     const [todos, setTodos] = useState(unitialState)
 
+    const completeTask = (id) => {
+        const newTodos = todos.map((el) => id === el.id ? {...el, completed: !el.completed} : el)
+
+    }
+
     return (
         <div className="App">
             <ol>
-                {todos.map(el => <li key={el.id}>
-        <span style={el.completed ? {textDecoration: "line-through"} : {}} >
-            {el.id} {el.title} {el.completed}
-            </span>
-            </li>)}
-        <button>DELETE</button>
-            <button> </button>
-                </ol>
+                {todos.map(el =>
+                        <li key={el.id}>
+                            <span style={el.completed ? {textDecoration: "line-through"} : {}}>
+                            {el.id} {el.title} {el.completed}
+                            </span>
+                            <button>DELETE</button>
+                            {" "}
+                            <button>Done</button>
+                            {" "}
+                            <button>Update</button>
+                        </li>
+                )}
 
-                    </div>
-                    );
-                }
+            </ol>
 
-                export default App;
+        </div>
+    );
+}
+
+export default App;
