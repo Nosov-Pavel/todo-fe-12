@@ -36,9 +36,10 @@ function App() {
                             <span style={el.completed ? {textDecoration: "line-through"} : {}}>
                             {el.id} {el.title} {el.completed}
                             </span>
-                            <button>DELETE</button>
+
+                            <button onClick={() => completeTask(el.id)}>{el.completed ? "Undo" : "Done"}</button>
                             {" "}
-                            <button>Done</button>
+                            <button>DELETE</button>
                             {" "}
                             <button>Update</button>
                         </li>
