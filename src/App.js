@@ -22,27 +22,26 @@ const unitialState = [
 
 function App() {
     const [todos, setTodos] = useState(unitialState)
-
     const completeTask = (id) => {
-        const newTodos = todos.map((el) => id === el.id ? {...el, completed: !el.completed} : el)
-
+        const toDo = todos.map(el => el.id === id ? {...el, completed: !el.completed} : el)
+        setTodos(toDo)
     }
 
     return (
         <div className="App">
             <ol>
                 {todos.map(el =>
-                        <li key={el.id}>
+                    <li key={el.id}>
                             <span style={el.completed ? {textDecoration: "line-through"} : {}}>
                             {el.id} {el.title} {el.completed}
                             </span>
 
-                            <button onClick={() => completeTask(el.id)}>{el.completed ? "Undo" : "Done"}</button>
-                            {" "}
-                            <button>DELETE</button>
-                            {" "}
-                            <button>Update</button>
-                        </li>
+                        <button onClick={() => completeTask(el.id)}>Completed</button>
+                        {" "}
+                        <button>DELETE</button>
+                        {" "}
+                        <button>Update</button>
+                    </li>
                 )}
 
             </ol>
